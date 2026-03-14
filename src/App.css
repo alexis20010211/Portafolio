@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  background:#020617;
+  color:#e2e8f0;
+  font-family: ui-sans-serif, system-ui;
+  overflow-x:hidden;
+}
+
+/* AURORA BOREAL */
+
+body::before{
+  content:"";
+  position:fixed;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:
+  radial-gradient(circle at 30% 40%, rgba(34,211,238,0.15), transparent 40%),
+  radial-gradient(circle at 70% 60%, rgba(16,185,129,0.15), transparent 40%),
+  radial-gradient(circle at 50% 20%, rgba(59,130,246,0.15), transparent 40%);
+  animation: auroraMove 25s ease infinite;
+  z-index:-2;
+  filter: blur(80px);
+}
+
+@keyframes auroraMove{
+  0%{transform:translate(0,0) rotate(0deg);}
+  50%{transform:translate(-5%,5%) rotate(180deg);}
+  100%{transform:translate(0,0) rotate(360deg);}
+}
+
+/* ESTRELLAS */
+
+body::after{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 70% 80%, white, transparent),
+    radial-gradient(2px 2px at 40% 60%, white, transparent),
+    radial-gradient(1px 1px at 90% 20%, white, transparent),
+    radial-gradient(2px 2px at 10% 90%, white, transparent);
+  opacity:0.4;
+  z-index:-1;
+  animation: starsMove 120s linear infinite;
+}
+
+@keyframes starsMove{
+  from{transform:translateY(0);}
+  to{transform:translateY(-2000px);}
+}
+
+.section{
+  @apply max-w-6xl mx-auto px-6 py-24;
+}
+
+.title{
+  @apply text-4xl font-bold mb-10 text-center;
+}
