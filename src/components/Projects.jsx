@@ -4,7 +4,7 @@ const projects = [
     description: "Gestión de tickets de soporte técnico con registro de incidencias y seguimiento de solicitudes.",
     tech: "Java • Spring Boot • MySQL",
     github: "https://github.com/alexis20010211/Gestion-de-soporte-tecnico",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFD90cfPhML87KtMbsRMTwVAfmFT_fZn3Phw&s" // imagen de ejemplo
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFD90cfPhML87KtMbsRMTwVAfmFT_fZn3Phw&s"
   },
   {
     name: "Sistema Financiero SERF FINANCORP",
@@ -31,24 +31,33 @@ const projects = [
 
 function Projects() {
   return (
-    <section id="projects" className="section max-w-6xl mx-auto py-24">
-      <h2 className="title text-center mb-12 text-white">Proyectos</h2>
+    <section id="projects" className="max-w-6xl mx-auto py-20 md:py-24 px-6">
 
-      <div className="grid md:grid-cols-3 gap-8">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
+        Proyectos
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
         {projects.map((p, index) => (
           <div
             key={index}
             className="bg-slate-800 p-4 rounded-xl hover:-translate-y-2 transition transform shadow-lg"
           >
-            {/* Imagen */}
+
             <img
               src={p.image}
               alt={p.name}
               className="w-full h-40 object-cover rounded mb-4"
             />
 
-            <h3 className="text-xl font-bold mb-2 text-indigo-400">{p.name}</h3>
-            <p className="text-gray-400 mb-2">{p.description}</p>
+            <h3 className="text-lg md:text-xl font-bold mb-2 text-indigo-400">
+              {p.name}
+            </h3>
+
+            <p className="text-gray-400 text-sm md:text-base mb-3">
+              {p.description}
+            </p>
 
             {p.github && (
               <a
@@ -61,10 +70,15 @@ function Projects() {
               </a>
             )}
 
-            <span className="text-indigo-400 text-sm">{p.tech}</span>
+            <span className="text-indigo-400 text-xs md:text-sm">
+              {p.tech}
+            </span>
+
           </div>
         ))}
+
       </div>
+
     </section>
   );
 }

@@ -11,10 +11,13 @@ const socialLinks = [
 
 function ContactCards() {
   return (
-    <section id="contact" className="section max-w-6xl mx-auto py-24 px-4">
-      <h2 className="title text-4xl mb-12 text-center text-white">Contacto 📬</h2>
+    <section id="contact" className="max-w-6xl mx-auto py-20 md:py-24 px-6">
 
-      <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 justify-center">
+      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white">
+        Contacto 📬
+      </h2>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-center">
         {socialLinks.map((link, i) => (
           <motion.a
             key={i}
@@ -25,8 +28,8 @@ function ContactCards() {
             whileTap={{ scale: 0.95 }}
             className={`flex flex-col items-center justify-center gap-2 p-6 rounded-xl shadow-lg text-white ${link.color} hover:brightness-110 transition`}
           >
-            <div className="text-4xl">{link.icon}</div>
-            <p className="font-bold">{link.name}</p>
+            <div className="text-3xl md:text-4xl">{link.icon}</div>
+            <p className="font-bold text-sm md:text-base">{link.name}</p>
           </motion.a>
         ))}
       </div>
@@ -34,8 +37,9 @@ function ContactCards() {
       <p className="text-gray-500 mt-12 text-center text-sm">
         © 2026 Bryan Ramos Borjas. All rights reserved.
       </p>
+
     </section>
-  )
+  );
 }
 
 export default ContactCards;

@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaGitAlt, FaJava, FaAngular, FaPython, FaVuejs, FaDatabase } from "react-icons/fa";
 import { 
-SiJavascript, 
-SiMongodb, 
-SiMysql, 
-SiTypescript, 
-SiAnaconda, 
-SiJupyter, 
-SiPostman,
-SiVite,
-SiSwagger
+  SiJavascript, 
+  SiMongodb, 
+  SiMysql, 
+  SiTypescript, 
+  SiAnaconda, 
+  SiJupyter, 
+  SiPostman,
+  SiVite,
+  SiSwagger
 } from "react-icons/si";
 import { DiDotnet } from "react-icons/di";
 
@@ -29,7 +29,6 @@ const skills = [
   { name:"Vue", icon:<FaVuejs className="text-green-500"/> },
   { name:"Oracle", icon:<FaDatabase className="text-red-500"/> },
   { name:"C#", icon:<DiDotnet className="text-purple-500"/> },
-
   { name:"Anaconda", icon:<SiAnaconda className="text-green-600"/> },
   { name:"Jupyter Notebook", icon:<SiJupyter className="text-orange-500"/> },
   { name:"Postman", icon:<SiPostman className="text-orange-600"/> },
@@ -39,21 +38,22 @@ const skills = [
 
 function Skills() {
   return (
-    <section id="skills" className="max-w-6xl mx-auto py-24 text-center">
-      <h2 className="text-4xl font-bold mb-10 text-white">
-        Habilidades Técnicas
-      </h2>
+    <section id="skills" className="max-w-7xl mx-auto py-24 px-4 text-center">
+      <h2 className="text-4xl font-bold mb-12 text-white">Habilidades Técnicas</h2>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 justify-items-center">
         {skills.map((skill, i) => (
           <motion.div
             key={i}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-slate-800 px-6 py-4 rounded-lg hover:bg-indigo-500 transition flex flex-col items-center gap-2 cursor-pointer"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.05 }}
+            className="bg-slate-800 px-6 py-4 rounded-lg hover:bg-indigo-500 transition flex flex-col items-center gap-2 cursor-pointer w-full max-w-[120px]"
           >
             <div className="text-4xl">{skill.icon}</div>
-            <p className="text-white">{skill.name}</p>
+            <p className="text-white text-sm md:text-base">{skill.name}</p>
           </motion.div>
         ))}
       </div>
