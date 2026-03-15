@@ -1,62 +1,116 @@
-import { motion } from "framer-motion"
+// src/components/Hero.jsx
+import { useState, useEffect } from "react";
+import { HeartIcon, EyeIcon } from "@heroicons/react/24/solid";
+import BackgroundMusic from "./BackgroundMusic";
+import { motion } from "framer-motion";
 
-function Hero(){
+function Hero() {
+  // Likes
+  const [likes, setLikes] = useState(() => {
+    const storedLikes = localStorage.getItem("likes");
+    return storedLikes ? Number(storedLikes) : 0;
+  });
 
-return(
+  // Visitantes
+  const [visitors] = useState(() => {
+    const storedVisitors = localStorage.getItem("visitors");
+    return storedVisitors ? Number(storedVisitors) + 1 : 1;
+  });
 
-<section className="min-h-screen flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-20 gap-12">
+  useEffect(() => {
+    localStorage.setItem("visitors", visitors);
+  }, [visitors]);
 
-  <div className="text-center lg:text-left">
+  // Dar like
+  const handleLike = () => {
+    const newLikes = likes + 1;
+    setLikes(newLikes);
+    localStorage.setItem("likes", newLikes);
+  };
 
-    <p className="text-indigo-400 mb-3">
-      Hola mundo, Soy
-    </p>
+  return (
+    <section className="min-h-screen flex flex-col lg:flex-row items-center lg:items-start justify-center max-w-6xl mx-auto px-6 py-20 gap-16 bg-[#020617] text-[#e2e8f0] relative">
+      
+      {/* Música de fondo */}
+      <BackgroundMusic />
 
-    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-      Bryan Ramos Borjas
-    </h1>
+      {/* Texto */}
+      <div className="text-center lg:text-left lg:w-1/2">
+        <p className="text-indigo-400 mb-3">Hola mundo, Soy</p>
 
-    <h2 className="text-xl md:text-2xl lg:text-3xl text-indigo-400 mb-6">
-      Full Stack Developer
-    </h2>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          Bryan Ramos Borjas
+        </h1>
 
-    <p className="text-gray-400 max-w-md mx-auto lg:mx-0 mb-12 text-justify text-sm md:text-base">
-      Apasionado por construir aplicaciones web escalables y experiencias digitales modernas, disfruto combinando creatividad y lógica para desarrollar soluciones que realmente impacten a los usuarios. Me motiva aprender continuamente nuevas tecnologías y aplicar buenas prácticas de desarrollo, desde la optimización del rendimiento hasta la seguridad y la accesibilidad.  
-      Tengo experiencia trabajando tanto en el frontend como en el backend, creando interfaces intuitivas, sistemas robustos y aplicaciones completas que integran funcionalidades complejas de manera eficiente.  
-      Además, me gusta colaborar en proyectos que requieren trabajo en equipo, donde puedo aportar ideas, resolver problemas y mejorar procesos, siempre buscando entregar un producto de calidad y con un enfoque práctico. Actualmente me encuentro estudiando  <strong> en IDAT</strong>, lo que me permite complementar mi experiencia práctica con conocimientos académicos actualizados. Mi objetivo es seguir creciendo como desarrollador, enfrentar retos cada vez más interesantes y generar experiencias digitales que marquen la diferencia.
-    </p>
+        <h2 className="text-xl md:text-2xl lg:text-3xl text-indigo-400 mb-6">
+          Full Stack Developer
+        </h2>
 
-    <button className="bg-indigo-500 px-6 py-3 rounded-lg hover:bg-indigo-600 transition">
-      Download CV
-    </button>
+        <p className="text-gray-400 max-w-md mx-auto lg:mx-0 mb-6 text-justify text-sm md:text-base">
+          Apasionado por construir aplicaciones web escalables y experiencias digitales modernas, disfruto combinando creatividad y lógica para desarrollar soluciones que realmente impacten a los usuarios. Me motiva aprender continuamente nuevas tecnologías y aplicar buenas prácticas de desarrollo, desde la optimización del rendimiento hasta la seguridad y la accesibilidad.  
+          Tengo experiencia trabajando tanto en el frontend como en el backend, creando interfaces intuitivas, sistemas robustos y aplicaciones completas que integran funcionalidades complejas de manera eficiente.  
+          Además, me gusta colaborar en proyectos que requieren trabajo en equipo, donde puedo aportar ideas, resolver problemas y mejorar procesos, siempre buscando entregar un producto de calidad y con un enfoque práctico. Actualmente me encuentro estudiando <strong>en IDAT</strong>, lo que me permite complementar mi experiencia práctica con conocimientos académicos actualizados.
+        </p>
 
-  </div>
+        {/* Likes y visitas */}
+        <div className="flex items-center gap-6 mb-6 justify-center lg:justify-start">
 
-  <div className="relative flex justify-center">
+          <motion.button
+            onClick={handleLike}
+            whileTap={{ scale: 1.2 }}
+            className="flex items-center gap-2 bg-indigo-500 px-4 py-2 rounded-lg hover:bg-indigo-600 transition text-white font-semibold shadow-md"
+          >
+            <HeartIcon className="w-5 h-5 text-red-500" />
+            Me gusta
+          </motion.button>
 
-    <img
-      src="/profile.png"
-      className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border-4 border-indigo-500"
-    />
+          <div className="flex items-center gap-1 text-gray-100 font-bold text-lg">
+            <HeartIcon className="w-5 h-5 text-red-500" />
+            <motion.span
+              key={likes}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              {likes} Likes
+            </motion.span>
+          </div>
 
-    <motion.div
-      className="absolute inset-0 border border-indigo-400 rounded-full"
-      animate={{rotate:360}}
-      transition={{repeat:Infinity,duration:10,ease:"linear"}}
-    />
+          <div className="flex items-center gap-1 text-gray-400 text-sm">
+            <EyeIcon className="w-5 h-5 text-blue-400" />
+            {visitors} Visitantes
+          </div>
 
-    <motion.div
-      className="absolute inset-6 border border-blue-400 rounded-full"
-      animate={{rotate:-360}}
-      transition={{repeat:Infinity,duration:15,ease:"linear"}}
-    />
+        </div>
 
-  </div>
+        <button className="bg-indigo-500 px-6 py-3 rounded-lg hover:bg-indigo-600 transition shadow-md">
+          Download CV
+        </button>
+      </div>
 
-</section>
+      {/* Imagen */}
+      <div className="relative flex justify-center items-center lg:w-1/2 lg:mt-10">
 
-)
+        <img
+          src="/profile.png"
+          className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full border-4 border-indigo-500 shadow-[0_0_40px_rgba(99,102,241,0.6)]"
+        />
 
+        <motion.div
+          className="absolute inset-0 border border-indigo-400 rounded-full"
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+        />
+
+        <motion.div
+          className="absolute inset-6 border border-blue-400 rounded-full"
+          animate={{ rotate: -360 }}
+          transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+        />
+
+      </div>
+    </section>
+  );
 }
 
 export default Hero;
