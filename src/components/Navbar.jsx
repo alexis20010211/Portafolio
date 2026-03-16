@@ -15,9 +15,17 @@ function Navbar() {
     <nav className="fixed top-0 w-full bg-slate-900/70 backdrop-blur border-b border-slate-800 z-50">
       <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
 
-        <h1 className="text-lg font-bold text-indigo-400">
-          Bryan Alexis Ramos Borjas
-        </h1>
+        {/* FOTO + NOMBRE */}
+        <div className="flex items-center gap-3">
+          <img
+            src="/profile.png"
+            alt="Foto de perfil"
+            className="w-9 h-9 rounded-full object-cover border-2 border-indigo-400"
+          />
+          <h1 className="text-lg font-bold text-indigo-400">
+            Bryan Alexis Ramos Borjas
+          </h1>
+        </div>
 
         {/* BOTON HAMBURGUESA */}
         <button
@@ -34,28 +42,28 @@ function Navbar() {
             className="hover:text-indigo-400 cursor-pointer"
             onClick={() => scrollToSection("#about")}
           >
-            About
+            Sobre Mi
           </li>
 
           <li
             className="hover:text-indigo-400 cursor-pointer"
             onClick={() => scrollToSection("#skills")}
           >
-            Skills
+            Habilidades
           </li>
 
           <li
             className="hover:text-indigo-400 cursor-pointer"
             onClick={() => scrollToSection("#projects")}
           >
-            Projects
+            Proyectos
           </li>
 
           <li
             className="hover:text-indigo-400 cursor-pointer"
             onClick={() => scrollToSection("#contact")}
           >
-            Contact
+            Contacto
           </li>
 
         </ul>

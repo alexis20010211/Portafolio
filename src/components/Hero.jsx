@@ -1,33 +1,8 @@
 // src/components/Hero.jsx
-import { useState, useEffect } from "react";
-import { HeartIcon, EyeIcon } from "@heroicons/react/24/solid";
 import BackgroundMusic from "./BackgroundMusic";
 import { motion } from "framer-motion";
 
 function Hero() {
-  // Likes
-  const [likes, setLikes] = useState(() => {
-    const storedLikes = localStorage.getItem("likes");
-    return storedLikes ? Number(storedLikes) : 0;
-  });
-
-  // Visitantes
-  const [visitors] = useState(() => {
-    const storedVisitors = localStorage.getItem("visitors");
-    return storedVisitors ? Number(storedVisitors) + 1 : 1;
-  });
-
-  useEffect(() => {
-    localStorage.setItem("visitors", visitors);
-  }, [visitors]);
-
-  // Dar like
-  const handleLike = () => {
-    const newLikes = likes + 1;
-    setLikes(newLikes);
-    localStorage.setItem("likes", newLikes);
-  };
-
   return (
     <section className="min-h-screen flex flex-col lg:flex-row items-center lg:items-start justify-center max-w-6xl mx-auto px-6 py-20 gap-16 bg-[#020617] text-[#e2e8f0] relative">
       
@@ -51,37 +26,6 @@ function Hero() {
           Tengo experiencia trabajando tanto en el frontend como en el backend, creando interfaces intuitivas, sistemas robustos y aplicaciones completas que integran funcionalidades complejas de manera eficiente.  
           Además, me gusta colaborar en proyectos que requieren trabajo en equipo, donde puedo aportar ideas, resolver problemas y mejorar procesos, siempre buscando entregar un producto de calidad y con un enfoque práctico. Actualmente me encuentro estudiando <strong>en IDAT</strong>, lo que me permite complementar mi experiencia práctica con conocimientos académicos actualizados.
         </p>
-
-        {/* Likes y visitas */}
-        <div className="flex items-center gap-6 mb-6 justify-center lg:justify-start">
-
-          <motion.button
-            onClick={handleLike}
-            whileTap={{ scale: 1.2 }}
-            className="flex items-center gap-2 bg-indigo-500 px-4 py-2 rounded-lg hover:bg-indigo-600 transition text-white font-semibold shadow-md"
-          >
-            <HeartIcon className="w-5 h-5 text-red-500" />
-            Me gusta
-          </motion.button>
-
-          <div className="flex items-center gap-1 text-gray-100 font-bold text-lg">
-            <HeartIcon className="w-5 h-5 text-red-500" />
-            <motion.span
-              key={likes}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              {likes} Likes
-            </motion.span>
-          </div>
-
-          <div className="flex items-center gap-1 text-gray-400 text-sm">
-            <EyeIcon className="w-5 h-5 text-blue-400" />
-            {visitors} Visitantes
-          </div>
-
-        </div>
 
         <button className="bg-indigo-500 px-6 py-3 rounded-lg hover:bg-indigo-600 transition shadow-md">
           Download CV
