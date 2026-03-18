@@ -1,88 +1,46 @@
+/* ============================ */
+/*       INDEX.CSS               */
+/* ============================ */
+
+/* Importar Tailwind (solo si no lo haces en app.css) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: #0b0c1a; /* azul muy oscuro, casi negro */
-  color: #e2e8f0;
-  font-family: ui-sans-serif, system-ui;
-  overflow-x: hidden;
-  position: relative;
-  z-index: 0;
+/* Opcional: Reset global adicional */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* 🌌 AURORA BOREAL DINÁMICA */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  width: 200%;
-  height: 200%;
-  z-index: -2;
-  filter: blur(150px);
-  opacity: 0.7;
-
-  background:
-    radial-gradient(circle at 15% 25%, rgba(50, 200, 180, 0.25), transparent 50%),   /* verde azulado */
-    radial-gradient(circle at 50% 15%, rgba(70, 60, 180, 0.2), transparent 50%),    /* azul profundo */
-    radial-gradient(circle at 80% 65%, rgba(140, 50, 200, 0.2), transparent 50%),   /* morado intenso */
-    radial-gradient(circle at 60% 50%, rgba(90, 100, 220, 0.15), transparent 50%),  /* azul violeta */
-    radial-gradient(circle at 35% 75%, rgba(180, 100, 200, 0.15), transparent 50%);/* violeta suave */
-
-  animation: auroraMove 45s ease-in-out infinite;
+/* Fuente global */
+html {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  scroll-behavior: smooth; /* para scroll suave */
 }
 
-@keyframes auroraMove {
-  0% { transform: translate(0,0) rotate(0deg); }
-  50% { transform: translate(-6%,5%) rotate(180deg); }
-  100% { transform: translate(0,0) rotate(360deg); }
+/* Links generales */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
 }
 
-/* ✨ ESTRELLAS REALISTAS */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.6;
-
-  background-image:
-    radial-gradient(1.5px 1.5px at 10% 20%, #e5e7eb, transparent),
-    radial-gradient(1px 1px at 30% 80%, #cbd5e1, transparent),
-    radial-gradient(1.2px 1.2px at 50% 50%, #f8fafc, transparent),
-    radial-gradient(0.8px 0.8px at 70% 30%, #94a3b8, transparent),
-    radial-gradient(1.5px 1.5px at 90% 60%, #e5e7eb, transparent),
-    radial-gradient(1px 1px at 20% 90%, #cbd5e1, transparent),
-    radial-gradient(1.2px 1.2px at 80% 10%, #94a3b8, transparent),
-    radial-gradient(1px 1px at 60% 70%, #f8fafc, transparent);
-
-  animation: starsMove 200s linear infinite, starsTwinkle 4s ease-in-out infinite;
+a:hover {
+  color: #6366f1; /* azul-indigo de Tailwind */
 }
 
-@keyframes starsMove {
-  from { transform: translateY(0); }
-  to { transform: translateY(-2000px); }
+/* Scrollbar personalizado opcional */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@keyframes starsTwinkle {
-  0%,100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+::-webkit-scrollbar-track {
+  background: #0b0c1a;
 }
 
-/* Overlay suave para resaltar textos e íconos */
-body::after {
-  content:"";
-  position: fixed;
-  inset:0;
-  background: linear-gradient(to bottom, rgba(11,12,26,0.7), rgba(11,12,26,0.9));
-  z-index: -1;
-}
-
-/* 📦 UTILIDADES */
-.section {
-  @apply max-w-6xl mx-auto px-6 py-24;
-}
-
-.title {
-  @apply text-4xl font-bold mb-10 text-center;
+::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 4px;
 }

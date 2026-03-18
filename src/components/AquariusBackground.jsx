@@ -1,13 +1,12 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
-/* 🌌 Generar estrellas en % para que sea responsive */
+/* 🌌 Generar estrellas en % */
 const generateStars = (count = 50) => {
   return Array.from({ length: count }).map(() => ({
     x: Math.random() * 100,
     y: Math.random() * 100,
     size: 1.5 + Math.random() * 3,
-    duration: 3 + Math.random() * 5,
     delay: Math.random() * 5
   }));
 };
@@ -43,16 +42,19 @@ export default function AquariusBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
 
-      {/* 🌈 Aurora boreal con radial gradients */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 w-full h-full blur-[140px]">
-          <div className="absolute w-[150%] h-[150%] rounded-full
-            bg-[radial-gradient(circle_at_20%_30%,rgba(0,255,150,0.25)_0%,transparent_40%),
-                 radial-gradient(circle_at_70%_60%,rgba(50,200,255,0.2)_0%,transparent_40%),
-                 radial-gradient(circle_at_50%_10%,rgba(150,0,255,0.15)_0%,transparent_40%)] 
-            animate-[auroraMove_50s_ease-in-out_infinite]" />
-        </div>
-      </div>
+      {/* 🌈 Aurora boreal animada */}
+      <motion.div
+        className="absolute inset-0 w-[200%] h-[200%] blur-[140px] -z-10"
+        animate={{
+          rotate: [0, 10, -10, 0],
+          translateX: [0, -5, 5, 0],
+          translateY: [0, 5, -5, 0]
+        }}
+        transition={{ duration: 60, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          background: "linear-gradient(135deg, rgba(0,255,128,0.25), rgba(0,128,255,0.2), rgba(128,0,255,0.15))"
+        }}
+      />
 
       {/* ✨ Estrellas animadas */}
       {stars.map((star, i) => {
@@ -64,7 +66,7 @@ export default function AquariusBackground() {
             style={{
               width: `${star.size}px`,
               height: `${star.size}px`,
-              boxShadow: `0 0 ${star.size * 4}px rgba(96,165,250,0.8)`
+              boxShadow: `0 0 ${star.size * 4}px rgba(255,255,255,0.7)`
             }}
             initial={{ left: `${star.x}%`, top: `${star.y}%` }}
             animate={{
@@ -83,7 +85,7 @@ export default function AquariusBackground() {
         );
       })}
 
-      {/* 🔗 Constelación de Acuario con glow */}
+      {/* 🔗 Líneas de la constelación con glow */}
       <svg className="absolute w-full h-full">
         {lines.map((line, i) => (
           <motion.polyline
@@ -105,17 +107,6 @@ export default function AquariusBackground() {
           />
         ))}
       </svg>
-
-      {/* 🔧 Animación aurora personalizada */}
-      <style jsx>{`
-        @keyframes auroraMove {
-          0% { transform: translate(0,0) rotate(0deg) scale(1); }
-          25% { transform: translate(-1%,1%) rotate(5deg) scale(1.05); }
-          50% { transform: translate(-2%,2%) rotate(10deg) scale(1.1); }
-          75% { transform: translate(-1%,1%) rotate(5deg) scale(1.05); }
-          100% { transform: translate(0,0) rotate(0deg) scale(1); }
-        }
-      `}</style>
     </div>
   );
 }
