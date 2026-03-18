@@ -18,11 +18,15 @@ function Navbar() {
         {/* FOTO + NOMBRE */}
         <div className="flex items-center gap-3">
           <img
-            src="/profile.png"
+            src="profile.png"
             alt="Foto de perfil"
-            className="w-9 h-9 rounded-full object-cover border-2 border-indigo-400"
+            className="w-9 h-9 rounded-full object-cover border-2 border-indigo-400 cursor-pointer"
+            onClick={() => scrollToSection("#hero")}
           />
-          <h1 className="text-lg font-bold text-indigo-400">
+          <h1
+            className="text-lg font-bold text-indigo-400 cursor-pointer"
+            onClick={() => scrollToSection("#hero")}
+          >
             Bryan Alexis Ramos Borjas
           </h1>
         </div>
@@ -37,7 +41,6 @@ function Navbar() {
 
         {/* MENU DESKTOP */}
         <ul className="hidden md:flex gap-6 text-sm">
-
           <li
             className="hover:text-indigo-400 cursor-pointer"
             onClick={() => scrollToSection("#about")}
@@ -65,7 +68,6 @@ function Navbar() {
           >
             Contacto
           </li>
-
         </ul>
       </div>
 
@@ -73,35 +75,40 @@ function Navbar() {
       {open && (
         <div className="md:hidden bg-slate-900 border-t border-slate-800">
           <ul className="flex flex-col items-center gap-6 py-6 text-sm">
+            <li
+              className="hover:text-indigo-400 cursor-pointer"
+              onClick={() => scrollToSection("#hero")}
+            >
+              Inicio
+            </li>
 
             <li
               className="hover:text-indigo-400 cursor-pointer"
               onClick={() => scrollToSection("#about")}
             >
-              About
+              Sobre Mi
             </li>
 
             <li
               className="hover:text-indigo-400 cursor-pointer"
               onClick={() => scrollToSection("#skills")}
             >
-              Skills
+              Habilidades
             </li>
 
             <li
               className="hover:text-indigo-400 cursor-pointer"
               onClick={() => scrollToSection("#projects")}
             >
-              Projects
+              Proyectos
             </li>
 
             <li
               className="hover:text-indigo-400 cursor-pointer"
               onClick={() => scrollToSection("#contact")}
             >
-              Contact
+              Contacto
             </li>
-
           </ul>
         </div>
       )}
