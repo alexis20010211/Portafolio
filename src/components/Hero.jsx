@@ -3,11 +3,11 @@ import BackgroundMusic from "./BackgroundMusic";
 
 function HeroFullWidth() {
   return (
-    <section className="relative w-full min-h-screen flex flex-col lg:flex-row items-center justify-center px-12 lg:px-32 py-32 gap-16 text-[#e2e8f0] overflow-hidden bg-[#0b0c1a]">
+    <section className="relative w-full min-h-screen flex flex-col lg:flex-row items-center justify-center px-12 lg:px-32 py-32 gap-16 text-[#e2e8f0] overflow-hidden">
 
-      {/* 🌌 Fondo dinámico tipo universo */}
+      {/* 🌌 Efectos (sin fondo oscuro) */}
       <div className="absolute inset-0 -z-20">
-        {/* Glow Orbs grandes */}
+        {/* Glow Orbs */}
         <motion.div
           animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
           transition={{ duration: 60, repeat: Infinity }}
@@ -19,8 +19,8 @@ function HeroFullWidth() {
           className="absolute w-[600px] h-[600px] bg-blue-400/20 blur-[180px] rounded-full bottom-[-150px] right-[-150px]"
         />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b0c1a]/60 to-[#0b0c1a]" />
+        {/* Overlay SUAVE (sin negro) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0f172a]/40 to-transparent" />
       </div>
 
       <BackgroundMusic />
@@ -84,9 +84,7 @@ function HeroFullWidth() {
           <button
             onClick={() => {
               const projectsSection = document.getElementById("projects");
-              if (projectsSection) {
-                projectsSection.scrollIntoView({ behavior: "smooth" });
-              }
+              projectsSection?.scrollIntoView({ behavior: "smooth" });
             }}
             className="border border-indigo-500 px-6 py-3 rounded-lg hover:bg-indigo-500/10 transition backdrop-blur-md"
           >
@@ -95,7 +93,7 @@ function HeroFullWidth() {
         </motion.div>
       </motion.div>
 
-      {/* 🧬 IMAGEN + HALOS */}
+      {/* 🧬 IMAGEN */}
       <motion.div
         initial={{ opacity: 0, x: 60 }}
         animate={{ opacity: 1, x: 0 }}
@@ -111,7 +109,7 @@ function HeroFullWidth() {
             className="absolute inset-0 bg-indigo-500/30 blur-3xl"
           />
 
-          {/* Imagen del Perfil */}
+          {/* Imagen */}
           <motion.img
             src={`${import.meta.env.BASE_URL}profile.png`}
             alt="profile"

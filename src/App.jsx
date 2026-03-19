@@ -7,26 +7,41 @@ import Contact from "./components/Contact";
 import BackgroundMusic from "./components/BackgroundMusic";
 import AquariusBackground from "./components/AquariusBackground";
 
+// ✅ imagen desde assets
+import bg from "./assets/bg-night.jpg";
+
 function App() {
   return (
-    <div className="relative min-h-screen bg-[#0b0c1a] text-[#e2e8f0] overflow-x-hidden overflow-y-auto">
+    <div className="relative min-h-screen text-[#e2e8f0] overflow-x-hidden">
 
-      {/* 🌌 Fondo animado: Aurora boreal + Estrellas + Glow */}
-      <div className="fixed inset-0 -z-10 pointer-events-none">
-        <AquariusBackground />
+      {/* 🌌 FONDO PRO */}
+      <div className="fixed inset-0 -z-10">
 
-        {/* Extra glow suave para mejorar el efecto de aurora */}
-        <div className="absolute inset-0 w-[200%] h-[200%] -z-20 blur-[140px] animate-[auroraMove_60s_ease-in-out_infinite]"
-             style={{
-               background: "radial-gradient(circle at 20% 30%, rgba(0,255,150,0.15), transparent 50%), radial-gradient(circle at 50% 50%, rgba(0,128,255,0.1), transparent 60%), radial-gradient(circle at 80% 70%, rgba(128,0,255,0.08), transparent 50%)"
-             }}
+        {/* 🖼️ IMAGEN BASE (VISIBLE SIEMPRE) */}
+        <div
+          className="absolute inset-0 bg-cover bg-center scale-105"
+          style={{
+            backgroundImage: `url(${bg})`
+          }}
         />
+
+        {/* 🌑 OVERLAY SUAVE (NO LO MATA) */}
+        <div className="absolute inset-0 bg-[#020617]/50" />
+
+        {/* ✨ EFECTOS SUAVES (NO TAPAN) */}
+        <div className="absolute inset-0 opacity-15">
+          <AquariusBackground />
+        </div>
+
+        {/* 🌫️ GRADIENTE PROFUNDIDAD (TOP DESIGN) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020617]/30 to-[#020617]/80" />
+
       </div>
 
-      {/* 🎵 Música de fondo */}
+      {/* 🎵 Música */}
       <BackgroundMusic />
 
-      {/* 🌟 Contenido principal */}
+      {/* 🌟 CONTENIDO */}
       <div className="relative z-10">
         <Navbar />
         <Hero />
@@ -35,15 +50,6 @@ function App() {
         <Projects />
         <Contact />
       </div>
-
-      {/* 🔧 Keyframes de aurora */}
-      <style jsx>{`
-        @keyframes auroraMove {
-          0% { transform: translate(0,0) rotate(0deg); }
-          50% { transform: translate(-5%,3%) rotate(15deg); }
-          100% { transform: translate(0,0) rotate(0deg); }
-        }
-      `}</style>
     </div>
   );
 }
