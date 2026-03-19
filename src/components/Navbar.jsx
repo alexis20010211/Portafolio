@@ -18,9 +18,9 @@ function Navbar() {
         {/* FOTO + NOMBRE */}
         <div className="flex items-center gap-3">
           <img
-            src="profile.png"
+            src={`${import.meta.env.BASE_URL}profile.png`}
             alt="Foto de perfil"
-            className="w-9 h-9 rounded-full object-cover border-2 border-indigo-400 cursor-pointer"
+            className="w-9 h-9 rounded-full object-cover object-center border-2 border-indigo-400 cursor-pointer"
             onClick={() => scrollToSection("#hero")}
           />
           <h1
@@ -41,33 +41,10 @@ function Navbar() {
 
         {/* MENU DESKTOP */}
         <ul className="hidden md:flex gap-6 text-sm">
-          <li
-            className="hover:text-indigo-400 cursor-pointer"
-            onClick={() => scrollToSection("#about")}
-          >
-            Sobre Mi
-          </li>
-
-          <li
-            className="hover:text-indigo-400 cursor-pointer"
-            onClick={() => scrollToSection("#skills")}
-          >
-            Habilidades
-          </li>
-
-          <li
-            className="hover:text-indigo-400 cursor-pointer"
-            onClick={() => scrollToSection("#projects")}
-          >
-            Proyectos
-          </li>
-
-          <li
-            className="hover:text-indigo-400 cursor-pointer"
-            onClick={() => scrollToSection("#contact")}
-          >
-            Contacto
-          </li>
+          <li onClick={() => scrollToSection("#about")} className="hover:text-indigo-400 cursor-pointer">Sobre Mi</li>
+          <li onClick={() => scrollToSection("#skills")} className="hover:text-indigo-400 cursor-pointer">Habilidades</li>
+          <li onClick={() => scrollToSection("#projects")} className="hover:text-indigo-400 cursor-pointer">Proyectos</li>
+          <li onClick={() => scrollToSection("#contact")} className="hover:text-indigo-400 cursor-pointer">Contacto</li>
         </ul>
       </div>
 
@@ -75,40 +52,11 @@ function Navbar() {
       {open && (
         <div className="md:hidden bg-slate-900 border-t border-slate-800">
           <ul className="flex flex-col items-center gap-6 py-6 text-sm">
-            <li
-              className="hover:text-indigo-400 cursor-pointer"
-              onClick={() => scrollToSection("#hero")}
-            >
-              Inicio
-            </li>
-
-            <li
-              className="hover:text-indigo-400 cursor-pointer"
-              onClick={() => scrollToSection("#about")}
-            >
-              Sobre Mi
-            </li>
-
-            <li
-              className="hover:text-indigo-400 cursor-pointer"
-              onClick={() => scrollToSection("#skills")}
-            >
-              Habilidades
-            </li>
-
-            <li
-              className="hover:text-indigo-400 cursor-pointer"
-              onClick={() => scrollToSection("#projects")}
-            >
-              Proyectos
-            </li>
-
-            <li
-              className="hover:text-indigo-400 cursor-pointer"
-              onClick={() => scrollToSection("#contact")}
-            >
-              Contacto
-            </li>
+            <li onClick={() => scrollToSection("#hero")} className="hover:text-indigo-400 cursor-pointer">Inicio</li>
+            <li onClick={() => scrollToSection("#about")} className="hover:text-indigo-400 cursor-pointer">Sobre Mi</li>
+            <li onClick={() => scrollToSection("#skills")} className="hover:text-indigo-400 cursor-pointer">Habilidades</li>
+            <li onClick={() => scrollToSection("#projects")} className="hover:text-indigo-400 cursor-pointer">Proyectos</li>
+            <li onClick={() => scrollToSection("#contact")} className="hover:text-indigo-400 cursor-pointer">Contacto</li>
           </ul>
         </div>
       )}

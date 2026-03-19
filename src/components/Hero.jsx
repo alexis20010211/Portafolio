@@ -6,7 +6,7 @@ function HeroFullWidth() {
     <section className="relative w-full min-h-screen flex flex-col lg:flex-row items-center justify-center px-12 lg:px-32 py-32 gap-16 text-[#e2e8f0] overflow-hidden bg-[#0b0c1a]">
 
       {/* 🌌 Fondo dinámico tipo universo */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 -z-20">
         {/* Glow Orbs grandes */}
         <motion.div
           animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
@@ -19,7 +19,7 @@ function HeroFullWidth() {
           className="absolute w-[600px] h-[600px] bg-blue-400/20 blur-[180px] rounded-full bottom-[-150px] right-[-150px]"
         />
 
-        {/* Overlay de degradado suave */}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b0c1a]/60 to-[#0b0c1a]" />
       </div>
 
@@ -76,13 +76,11 @@ function HeroFullWidth() {
           transition={{ delay: 0.9 }}
           className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
         >
-          {/* Download CV */}
           <button className="relative px-6 py-3 rounded-lg bg-indigo-500 hover:bg-indigo-600 transition shadow-lg shadow-indigo-500/30 overflow-hidden group">
             <span className="relative z-10">Download CV</span>
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition duration-700" />
           </button>
 
-          {/* Ver Proyectos */}
           <button
             onClick={() => {
               const projectsSection = document.getElementById("projects");
@@ -104,22 +102,24 @@ function HeroFullWidth() {
         transition={{ duration: 0.9 }}
         className="relative flex justify-center items-center lg:flex-1 z-10 mt-12 lg:mt-0"
       >
-        <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px]">
-          {/* Halo animado */}
+        <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px] rounded-full overflow-hidden">
+
+          {/* Halo */}
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 4, repeat: Infinity }}
-            className="absolute inset-0 bg-indigo-500/30 blur-3xl rounded-full"
+            className="absolute inset-0 bg-indigo-500/30 blur-3xl"
           />
 
+          {/* Imagen del Perfil */}
           <motion.img
-            src="profile.png"
+            src={`${import.meta.env.BASE_URL}profile.png`}
             alt="profile"
             whileHover={{ scale: 1.05 }}
-            className="relative z-10 w-full h-full rounded-full border border-indigo-400 shadow-[0_0_80px_rgba(99,102,241,0.7)] object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-[40%_20%] rounded-full z-10"
           />
 
-          {/* Anillos rotatorios */}
+          {/* Anillos */}
           <motion.div
             className="absolute inset-0 border border-indigo-400/30 rounded-full"
             animate={{ rotate: 360 }}
@@ -131,7 +131,7 @@ function HeroFullWidth() {
             transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
           />
 
-          {/* Dots flotantes */}
+          {/* Dots */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
