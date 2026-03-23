@@ -1,62 +1,41 @@
+import { useState } from "react";
+
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import BackgroundMusic from "./components/BackgroundMusic";
-import AquariusBackground from "./components/AquariusBackground";
 
-// ✅ Imagen desde assets (1920x1080)
-import bg from "./assets/bg-night.jpg";
+import BackgroundEffects from "./components/BackgroundEffects";
+import Intro from "./components/Intro";
+import PageWrapper from "./components/PageWrapper"; // ✅ nuevo
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
+
   return (
     <div className="relative min-h-screen text-[#e2e8f0] overflow-x-hidden">
 
-      {/* 🌌 FONDO ULTRA ADAPTATIVO */}
-      <div className="fixed inset-0 -z-10">
+      {/* 🎬 INTRO */}
+      {showIntro && <Intro onFinish={() => setShowIntro(false)} />}
 
-        {/* 🖼️ IMAGEN RESPONSIVE */}
-        <div
-          className="
-            absolute inset-0
-            bg-center       /* centra la imagen */
-            bg-no-repeat
-            bg-cover        /* siempre llena el contenedor */
-            brightness-110
-            contrast-110
-          "
-          style={{
-            backgroundImage: `url(${bg})`
-          }}
-        />
+      {/* 🌌 FONDO */}
+      <BackgroundEffects />
 
-        {/* 🌑 OVERLAY RESPONSIVE */}
-        <div className="absolute inset-0 bg-[#020617]/40 md:bg-[#020617]/50 lg:bg-[#020617]/60" />
-
-        {/* ✨ EFECTOS SUAVES */}
-        <div className="absolute inset-0 opacity-10 md:opacity-15">
-          <AquariusBackground />
-        </div>
-
-        {/* 🌫️ GRADIENTE PROFUNDIDAD */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020617]/30 to-[#020617]/80" />
-
-      </div>
-
-      {/* 🎵 Música */}
-      <BackgroundMusic />
-
-      {/* 🌟 CONTENIDO */}
-      <div className="relative z-10">
-        <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </div>
+      {/* 🌟 CONTENIDO CON EFECTO GRAVEDAD */}
+      {!showIntro && ( // 🔥 clave: solo aparece después del intro
+        <PageWrapper>
+          <div className="relative z-10">
+            <Navbar />
+            <Hero />
+            <About />
+            <Skills />
+            <Projects />
+            <Contact />
+          </div>
+        </PageWrapper>
+      )}
 
     </div>
   );
